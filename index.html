@@ -1,0 +1,40 @@
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="navi.js"></script>
+	
+	<h2>Simple  Request Function</h2>
+	<p>This is a simple data request function with POST and GET requests</p>
+	<p>- Allows you to retrn the POST or GET data to another function or to another defined element (ex: div) </p>
+	<p>- Functon can be used to request JSON data and forward to a custom function.</p>
+	<p>- POSTTHIS method uses form serialize to post data. </p>
+	<hr />
+	
+<div id="logaction" style="color:#FF0000;">Log Acton
+ </div>
+<div id="posta">
+<strong>Sample input</strong><input value="Sample input A" id="parmA" name="parmA" />
+</div>
+<div id="res"></div>
+
+<button onclick="pagenavi('pageA','#postb','','postthis','#posta','myfunctionA');" >Post to html and return from my function</button>
+<button onclick="pagenavi('pageB','#postb','','postthis','#posta','myfunctionA');" >Post to PHP and return from my function</button>
+<button onclick="pagenavi('pageB','#postb','','postthis','#posta','myfunctionA','GET');" >GET to PHP and return from my function</button>
+
+<div id="postb">Element B
+ </div>
+<button onclick="pagenavi('pageB','#postb','returndata','postthis','#posta','');" >Post Element A to B</button>
+<div id="postc">Element C
+ </div>
+<button onclick="pagenavi('pageB','#postc','','','','','GET');" >Include a page by GET</button>
+<button onclick="pagenavi('pageB','#postc','','','','');" >Include a page by POST</button>
+<script>
+ XlogicCsuFuncList["myfunctionA"] = myfunctionA;
+ 
+function myfunctionA(pagename,container,optvals,func,tabelement,cusfunreq,rmedhod){
+$('#res').html(optvals);
+logAction(rmedhod+' & return data: '+pagename+' ');
+}
+
+function logAction(logevent){
+$('#logaction').append('<p>'+logevent+'</p>');
+}
+</script>
